@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mobile OS Redirect</title>
+    <plugin name="cordova-plugin-appavailability" source="npm" />
+  </head>
+  <body>
+    <script>
+      const getMobileOS = () => {
+        const ua = navigator.userAgent;
+        if (/android/i.test(ua)) {
+          return "Android";
+        } else if (/iPad|iPhone|iPod/.test(ua)) {
+          return "iOS";
+        }
+        return "Other";
+      };
+
+      const redirectToApp = (androidPackageName, iOSAppId, redirectUrl) => {
+        const os = getMobileOS();
+        if (os === "Android") {
+          appAvailability.check(
+            "com.amvg.hemlak", 
+            function (info) {
+                window.location.href = redirectUrl;
+            },
+            function () {
+                window.location.href = `market://details?id=${androidPackageName}`;
+            }
+          );
+          window.location.href = redirectUrl;
+        } else if (os === "iOS") {
+          window.location.href = `https://apps.apple.com/de/app/${iOSAppId}`;
+        } else {
+          window.location.href = redirectUrl;
+        }
+      };
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const androidPackageName = urlParams.get("androidPackage");
+      const iOSAppId = urlParams.get("iOSAppId");
+      const redirectUrl = urlParams.get("redirectUrl");
+
+      if (androidPackageName && iOSAppId && redirectUrl) {
+        redirectToApp(androidPackageName, iOSAppId, redirectUrl);
+      }
+    </script>
+  </body>
+</html>
