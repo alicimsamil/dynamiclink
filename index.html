@@ -45,14 +45,14 @@
 
         setTimeout(function () {
           var endTime = new Date().getTime();
-          var timeoutMilliseconds = 2000; 
+          var timeoutMilliseconds = 1000; 
 
           if (endTime - startTime < timeoutMilliseconds && document.hidden) {
           } else {
             var marketUrl = `https://play.google.com/store/apps/details?id=${androidPackageName}`;
             window.location.href = marketUrl;
           }
-        }, 1000);
+        }, 500);
       }
     </script>
   </body>
