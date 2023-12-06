@@ -50,7 +50,7 @@
 
           if (endTime - startTime < timeoutMilliseconds && document.hidden) {
           } else {
-            var marketUrl = `market://details?id=${androidPackageName}`;
+            var marketUrl = `https://play.google.com/store/apps/details?id=${androidPackageName}`;
             window.location.href = marketUrl;
           }
         }, 1000);
