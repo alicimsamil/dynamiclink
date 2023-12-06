@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mobile OS Redirect</title>
+    <title>Salonumuz Klimalıdır</title>
   </head>
   <body>
     <script>
@@ -28,15 +28,6 @@
         }
       };
 
-      const urlParams = new URLSearchParams(window.location.search);
-      const androidPackageName = "com.amvg.hemlak";
-      const iOSAppId = 496855282;
-      const redirectUrl = urlParams.get("redirectUrl");
-
-      if (androidPackageName && iOSAppId && redirectUrl) {
-        redirectToApp(androidPackageName, iOSAppId, redirectUrl);
-      }
-
       function checkApp() {
         var startTime = new Date().getTime();
         var intentUrl = "intent://www.hepsiemlak.com#Intent;scheme=hemlak;action=android.intent.action.VIEW;S.redirectUrl="+ redirectUrl +";end";
@@ -52,6 +43,15 @@
             window.location.href = marketUrl;
           }
         }, 500);
+      }
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const androidPackageName = "com.amvg.hemlak";
+      const iOSAppId = 496855282;
+      const redirectUrl = urlParams.get("redirectUrl");
+
+      if (redirectUrl) {
+        redirectToApp(redirectUrl);
       }
     </script>
   </body>
