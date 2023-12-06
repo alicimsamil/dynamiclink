@@ -40,12 +40,11 @@
       function checkApp() {
         var startTime = new Date().getTime();
         var intentUrl = "intent://www.hepsiemlak.com#Intent;scheme=https;action=android.intent.action.VIEW;S.redirectUrl="+ redirectUrl +";end";
-
         window.location.href = intentUrl;
 
         setTimeout(function () {
           var endTime = new Date().getTime();
-          var timeoutMilliseconds = 2000; 
+          var timeoutMilliseconds = 300; 
 
           if (endTime - startTime < timeoutMilliseconds && document.hidden) {
           } else {
