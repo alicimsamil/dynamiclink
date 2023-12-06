@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mobile OS Redirect</title>
-    <plugin name="cordova-plugin-appavailability" source="npm" />
   </head>
   <body>
     <script>
@@ -21,15 +20,7 @@
       const redirectToApp = (androidPackageName, iOSAppId, redirectUrl) => {
         const os = getMobileOS();
         if (os === "Android") {
-          appAvailability.check(
-            androidPackageName, 
-            function (info) {
-                window.location.href = redirectUrl;
-            },
-            function () {
-                window.location.href = `market://details?id=${androidPackageName}`;
-            }
-          );
+          window.onload = checkApp;
         } else if (os === "iOS") {
           window.location.href = `https://apps.apple.com/de/app/${iOSAppId}`;
         } else {
@@ -38,12 +29,30 @@
       };
 
       const urlParams = new URLSearchParams(window.location.search);
-      const androidPackageName = "com.amvg.hemlak"
-      const iOSAppId = 496855282
+      const androidPackageName = "com.amvg.hemlak";
+      const iOSAppId = 496855282;
       const redirectUrl = urlParams.get("redirectUrl");
 
       if (androidPackageName && iOSAppId && redirectUrl) {
         redirectToApp(androidPackageName, iOSAppId, redirectUrl);
+      }
+
+      function checkApp() {
+        var startTime = new Date().getTime();
+        var appScheme = "hemlak://hemlak.com";
+
+        window.location.href = appScheme;
+
+        setTimeout(function () {
+          var endTime = new Date().getTime();
+          var timeoutMilliseconds = 5000; 
+
+          if (endTime - startTime < timeoutMilliseconds && document.hidden) {
+          } else {
+            var marketUrl = `market://details?id=${androidPackageName}`;
+            window.location.href = marketUrl;
+          }
+        }, 1000);
       }
     </script>
   </body>
