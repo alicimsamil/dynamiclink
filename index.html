@@ -39,19 +39,19 @@
 
       function checkApp() {
         var startTime = new Date().getTime();
-        var intentUrl = "intent://www.hepsiemlak.com#Intent;scheme=https;action=android.intent.action.VIEW;S.redirectUrl="+ redirectUrl +";end";
+        var intentUrl = "intent://hepsiemlak.com#Intent;scheme=https;action=android.intent.action.VIEW;S.redirectUrl="+ redirectUrl +";end";
         window.location.href = intentUrl;
 
         setTimeout(function () {
           var endTime = new Date().getTime();
-          var timeoutMilliseconds = 300; 
+          var timeoutMilliseconds = 200; 
 
           if (endTime - startTime < timeoutMilliseconds && document.hidden) {
           } else {
             var marketUrl = `https://play.google.com/store/apps/details?id=${androidPackageName}`;
             window.location.href = marketUrl;
           }
-        }, 100);
+        }, 500);
       }
     </script>
   </body>
