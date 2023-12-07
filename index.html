@@ -17,7 +17,7 @@
         return "Other";
       };
 
-      const redirectToApp = (androidPackageName, iOSAppId, redirectUrl) => {
+      const redirectToApp = (redirectUrl) => {
         const os = getMobileOS();
         if (os === "Android") {
           window.onload = checkApp;
