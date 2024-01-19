@@ -37,8 +37,7 @@
           var endTime = new Date().getTime();
           var timeoutMilliseconds = 2000; 
 
-          if (endTime - startTime < timeoutMilliseconds && document.hidden) {
-          } else {
+          if (!(endTime - startTime < timeoutMilliseconds && document.hidden)){
             var marketUrl = `market://details?id=${androidPackageName}`;
             window.location.href = marketUrl;
           }
