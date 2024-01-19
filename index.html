@@ -7,11 +7,12 @@
   </head>
   <body>
     <script>
+      const agent = navigator.userAgent;
+
       const getMobileOS = () => {
-        const ua = navigator.userAgent;
-        if (/android/i.test(ua)) {
+        if (/android/i.test(agent)) {
           return "Android";
-        } else if (/iPad|iPhone|iPod/.test(ua)) {
+        } else if (/iPad|iPhone|iPod/.test(agent)) {
           return "iOS";
         }
         return "Other";
@@ -20,7 +21,7 @@
       const redirectToApp = (redirectUrl) => {
         const os = getMobileOS();
         if (os === "Android") {
-          if(navigator.userAgent.includes("Instagram")){
+          if(agent.includes("Instagram")){
             window.location.href= `intent:${window.location}#Intent;end`;
           } else {
             window.onload = checkApp;
