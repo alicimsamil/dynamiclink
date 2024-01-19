@@ -20,7 +20,11 @@
       const redirectToApp = (redirectUrl) => {
         const os = getMobileOS();
         if (os === "Android") {
-          window.location.href= `intent:${redirectUrl}#Intent;end`;
+          if(navigator.userAgent.includes("Instagram")){
+            window.location.href= `intent:${window.location}#Intent;end`;
+          } else {
+            window.onload = checkApp;
+          }
         } else if (os === "iOS") {
           window.location.href = `https://apps.apple.com/tr/app/${iOSAppId}`;
         } else {
