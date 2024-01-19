@@ -20,7 +20,7 @@
       const redirectToApp = (redirectUrl) => {
         const os = getMobileOS();
         if (os === "Android") {
-          window.location.href = redirectUrl;
+          window.location.href= `intent:${redirectUrl}#Intent;end`;
         } else if (os === "iOS") {
           window.location.href = `https://apps.apple.com/tr/app/${iOSAppId}`;
         } else {
