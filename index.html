@@ -39,10 +39,8 @@
 
           if (endTime - startTime < timeoutMilliseconds && document.hidden) {
           } else {
-          if(!navigator.userAgent.includes("Instagram")){
             var marketUrl = `market://details?id=${androidPackageName}`;
             window.location.href = marketUrl;
-          }
           }
         }, 500);
       }
