@@ -39,7 +39,7 @@
 
           if (endTime - startTime < timeoutMilliseconds && document.hidden) {
           } else {
-            var marketUrl = `https://play.google.com/store/apps/details?id=${androidPackageName}`;
+            var marketUrl = `market://details?id=${androidPackageName}`;
             window.location.href = marketUrl;
           }
         }, 500);
